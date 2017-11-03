@@ -19,7 +19,9 @@ export class SeguridadService {
 
   usuarioEncontrado:Array<IUsuario>
 
-  constructor(private router:Router) { }
+  constructor(private router:Router) {
+    console.log("what?")
+   }
 
   login(username:string, password:string){
 	this.usuarioEncontrado = this.usuarios.filter(item => {
@@ -41,6 +43,7 @@ export class SeguridadService {
   }
 
   estaAutenticado(): boolean{
+    console.log("whatboolean?")
 	  return this.autenticado
   }
 
