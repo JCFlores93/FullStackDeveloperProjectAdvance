@@ -3,20 +3,20 @@ import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, CanDeactivate
 import { Observable } from 'rxjs/Observable';
 
 interface canDeactivateComponent {
-  canDeactivateComponente: ()=> boolean 
+	canDeactivateComponente: () => boolean
 }
 
 @Injectable()
 export class GuardadoGuard implements CanDeactivate<canDeactivateComponent> {
 	canDeactivate(component: canDeactivateComponent): boolean {
-		if(component.canDeactivateComponente()){
+		if (component.canDeactivateComponente()) {
 			if (confirm("Hay datos no salvados, ¿Quieres salvarlos?")) {
-				return false				
+				return false
 			}
-				return true
+			return true
 		}
 		return true
 
 	}
-  }
+}
 
