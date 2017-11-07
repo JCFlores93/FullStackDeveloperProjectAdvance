@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'
-import { RouterModule, Routes } from '@angular/router'
-import { HomeComponent } from './home/home.component';
+import { RouterModule, Routes, PreloadAllModules } from '@angular/router'
+import { HomeComponent } from './nucleo/home/home.component';
 import { ListadoComponent } from './user/listado/listado.component';
 import { EditarUserComponent } from './user/editar-user/editar-user.component';
 import { DetalleUserComponent } from './user/detalle-user/detalle-user.component';
+import { AutenticacionGuard } from './auth/autenticacion.guard';
+import { AutorizacionGuard } from './auth/autorizacion.guard';
+import { GuardadoGuard } from './auth/guardado.guard';
 
 
 const rutas : Routes = [
@@ -13,9 +16,10 @@ const rutas : Routes = [
     path: "", component: HomeComponent, pathMatch:"full"
   },
   {
-    path: "users", component:ListadoComponent,children:[
+    path: "users", component:ListadoComponent,
+    canActivate:[AutenticacionGuard],canActivateChild :[AutenticacionGuard], children:[
       {path: "detalle/:id", component: DetalleUserComponent},
-      {path: "editar/:id", component: EditarUserComponent}
+      {path: "editar/:id", component: EditarUserComponent, canActivate:[AutorizacionGuard], canDeactivate:[GuardadoGuard]}
     ]
   }
   
@@ -23,7 +27,6 @@ const rutas : Routes = [
 
 @NgModule({
   declarations:[
-    HomeComponent,
     ListadoComponent,
     DetalleUserComponent,
     EditarUserComponent
@@ -31,10 +34,15 @@ const rutas : Routes = [
   imports: [
     FormsModule,
     CommonModule,
-    RouterModule.forRoot(rutas)
+    RouterModule.forRoot(rutas, { preloadingStrategy: PreloadAllModules})
   ],
   exports: [
     RouterModule
+  ],
+  providers: [
+    AutenticacionGuard,
+    AutorizacionGuard,
+    GuardadoGuard
   ]
 })
 export class AppRoutingModule { }
