@@ -1,21 +1,30 @@
 <div class="row">
-  
-  <div class="col-6">
-    <ul class="list-group">
-      <li class="list-group-item"
-        *ngFor="let user of users">
 
-        <!--(click)="mostrarDetalle(user.id)">-->
-
-      {{ user.id }}
-      {{ user.nombre }}
-      {{ user.apellido }}
-      {{ user.email }}
-      {{ user.role }}
-    </li>
-    </ul>
+  <div class="col-md-6">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Email
+            <img src="/open-iconic/svg/caret-bottom.svg">
+          </th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Role</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users" (click)="showDetail(user.id)">
+          <th scope="row">{{ user.id }}</th>
+          <td>{{ user.email }}</td>
+          <td>{{ user.first_name }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.role }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-
   <div class="col-md-6">
     <router-outlet></router-outlet>
   </div>

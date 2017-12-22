@@ -31,7 +31,7 @@ export class SeguridadService {
 	if(this.usuarioEncontrado && this.usuarioEncontrado.length > 0){
 		this.autenticado = true
 		this.cambioEstado.emit(true)
-		//this.router.navigate(["servidores"])
+		this.router.navigate(["users"])
 	}else {
 		this.autenticado = false
 	}

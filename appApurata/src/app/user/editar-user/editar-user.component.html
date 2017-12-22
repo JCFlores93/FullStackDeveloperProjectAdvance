@@ -1,3 +1,23 @@
-<p>
-  editar-user works!
-</p>
+<div class="card" *ngIf="user">
+  <h4 class="card-header">{{user.nombre}}</h4>
+  <div class="card-body">
+    <form (ngSubmit)="grabar(f)" #f="ngForm">
+      <div class="form-group">
+        <input type="text" class="form-control" name="nombre" [(ngModel)]="user.nombre">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="apellido" [(ngModel)]="user.apellido">
+        </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="email" [(ngModel)]="user.email">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="role" [(ngModel)]="user.role" [disabled]="!permitir">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success btn-block">Grabar</button>
+      </div>
+    </form>
+    <button class="btn btn-primary btn-block" (click)="editar(3)">Editar Jigsaw</button>
+  </div>
+</div>

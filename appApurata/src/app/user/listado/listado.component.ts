@@ -10,18 +10,29 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ListadoComponent implements OnInit {
 
-  users: Array<User>
+  users: User[] 
 
   constructor(private userServicio:UsersService,
               private ruteador: Router,
               private rutaActiva: ActivatedRoute ) { }
 
   ngOnInit() {
-	console.log(this.userServicio.getUsers())
-	this.users = this.userServicio.getUsers()
+    console.log(this.userServicio.getUsers())
+    //this.users = this.userServicio.getUsers()
+    this.userServicio.getUsersObservable()
+                    .subscribe(
+                      (registro: User[]) => {
+                        console.log("wtf" + registro)
+                        console.log("registro" + JSON.stringify(registro))
+                        this.users = registro
+                        console.log("users" + this.users)                        
+                      },
+                      (error: any) => console.log(error)
+                    )
   }
 
   showDetail(id: number){
+    console.log("showDetail " + id)
 	this.ruteador.navigate(["detalle", id], {relativeTo: this.rutaActiva} )
   }
 

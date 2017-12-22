@@ -1,3 +1,12 @@
-<p>
-  detalle-user works!
-</p>
+<div class="card" *ngIf="user">
+  <h4 class="card-header">{{user.nombre}}</h4>
+  <div class="card-body">
+    <p>ID: {{user.id}}</p>
+    <p>Nombre: {{user.nombre}}</p>
+    <p>Apellido: {{user.apellido}}</p>
+    <p>Email: {{user.email}}</p>
+    <p>Role: {{user.role}}</p>
+  </div>
+  <button class="btn btn-warning btn-block" (click)="editar()">Editar</button>
+  <button class="btn btn-success btn-block" (click)="cargar(3)">Cargar JIGSAW</button>
+</div>
