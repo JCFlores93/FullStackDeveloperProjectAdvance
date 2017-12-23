@@ -13,6 +13,7 @@ import { NucleoModule } from './nucleo/nucleo.module';
 import { MessageService } from './nucleo/message.service';
 import { ListadoPreApproveComponent } from './preapprove/listado-pre-approve/listado-pre-approve.component';
 import { DetallePreApproveComponent } from './preapprove/detalle-pre-approve/detalle-pre-approve.component'
+import { DataService } from './user/data.service';
 //import { AppInterceptor } from './app.interceptor';
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { DetallePreApproveComponent } from './preapprove/detalle-pre-approve/det
   ],
   providers: [
     //{ provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true},
-    SeguridadService, MessageService, UsersService
+    SeguridadService, MessageService, UsersService,DataService
   ],
   bootstrap: [AppComponent]
 })

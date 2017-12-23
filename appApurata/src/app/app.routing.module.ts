@@ -18,6 +18,7 @@ const rutas : Routes = [
   {
     path: "users", component:ListadoComponent,
     canActivate:[AutenticacionGuard],canActivateChild :[AutenticacionGuard], children:[
+      {path: "", component: ListadoComponent},
       {path: "detalle/:id", component: DetalleUserComponent},
       {path: "editar/:id", component: EditarUserComponent, canActivate:[AutorizacionGuard], canDeactivate:[GuardadoGuard]}
     ]
