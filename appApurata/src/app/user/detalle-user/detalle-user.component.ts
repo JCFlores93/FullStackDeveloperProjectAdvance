@@ -16,6 +16,9 @@ export class DetalleUserComponent implements OnInit, OnDestroy {
   user: User
   message:any
   subscription: Subscription
+  title: string = ""
+  isDataLoaded:boolean = false
+  dataBlocked:boolean = false
 
   constructor(private rutaActiva: ActivatedRoute, private userService: UsersService, private router: Router, private messageService: DataService) {
     console.log("ruta activa")
@@ -31,7 +34,18 @@ export class DetalleUserComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.id = this.rutaActiva.snapshot.params.id
     console.log("detalle-user" + this.id)
-    this.user = this.userService.usersDetail("" + this.id)
+    this.userService.getUserObservable(this.id.toString()).subscribe(
+        (registro: User) => {
+            console.log("id error" + registro.id)
+            console.log("dni" + registro.dni)
+            //this.user.dni = registro.dni
+            this.user = registro
+            this.isDataLoaded = true
+            this.title = `${registro.id} - ${registro.first_name} ${registro.last_name}`
+        },
+        (error: any) => console.log(error)
+    )
+    /*this.user = this.userService.usersDetail("" + this.id)
     this.rutaActiva.params
       .subscribe(
       (parametros: Params) => {
@@ -39,7 +53,7 @@ export class DetalleUserComponent implements OnInit, OnDestroy {
         console.log("id" + this.id)
         this.user = this.userService.usersDetail("" + this.id)
       }
-	  )
+	  )*/
 
   }
 
@@ -53,6 +67,21 @@ export class DetalleUserComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
 	//clear message 
 	this.messageService.clearMessage()
+  }
+  edit(){
+      this.dataBlocked = true
+  }
+
+  updateUser(id: string){
+      console.log("updateUser-detalle ::::" + JSON.stringify(this.user))
+      this.userService.updateUser(this.user)
+            .subscribe(
+                (registro: User) => {
+                    console.log("done" + registro.id)
+                },
+                (error: any) => console.log(error)
+
+            )
   }
 
 }

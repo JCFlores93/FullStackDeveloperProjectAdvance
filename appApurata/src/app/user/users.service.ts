@@ -20,20 +20,21 @@ export class UsersService {
 		return this.users.slice()
 	}
 	getUsersObservable(): Observable<User[]> {
-		let myHeaders = new HttpHeaders();
-		myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
-		myHeaders.append("Access-Control-Allow-Headers","Content-Type")
-		myHeaders.append("Access-Control-Allow-Methods","GET")
-		myHeaders.append("Access-Control-Allow-Origin","*")
+
 		return this.http.get<User[]>(`${routeApi}/user`,
 			{
-				headers: myHeaders,
 				observe: "body", 
 				responseType: "json"
 				}
 			)
 	}
-
+    getUserObservable(id: string) :Observable<User>{
+        return this.http.get<User>(`${routeApi}/user/${id}`,
+        {
+            observe: "body",
+            responseType: "json"
+        })
+    }
 	saveUser(user: User) {
 		console.log(user)
 		this.users.forEach(item => {
@@ -48,12 +49,29 @@ export class UsersService {
 	}
 	usersDetail(id: string): User{
 		console.log("users.service" + id)
-		let user: User
+        let user: User
+        console.log("usersDetail " + this.users)
 		this.users.forEach(item => {
-		if(item.id === id ) user = new User(item.id, item.first_name, item.last_name, item.email,"","","","","","", item.role)	
+            console.log("tipo de usuario " + item.id + "  ")
+		if(item.id == id ) user = new User(item.id, item.first_name, item.last_name, item.email,"","","","","","", item.role)	
 		})
 		return user
 	}
+	deleteUser(id: string): Observable<User>{
+		return this.http.delete<User>(`${routeApi}/user/${id}`,
+		{
+			observe: "body", 
+			responseType: "json"
+            })
+        }
+            
+    updateUser(user: User): Observable<User>{
+        return this.http.put<User>(`${routeApi}/user/${user.id}`,user,
+        {
+            observe: "body",
+            responseType: "json"
+        })
+    }
 
 
 

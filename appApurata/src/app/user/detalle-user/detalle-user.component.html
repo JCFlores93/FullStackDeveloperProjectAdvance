@@ -1,14 +1,21 @@
-<router-outlet></router-outlet>
 
-<div class="card" *ngIf="user">
-  <h4 class="card-header">{{user.nombre}}</h4>
+<div class="card" *ngIf="isDataLoaded">
+  <h4 class="card-header">USUARIO: {{ title }}</h4>
   <div class="card-body">
-    <p>ID: {{user.id}}</p>
-    <p>Nombre: {{user.nombre}}</p>
-    <p>Apellido: {{user.apellido}}</p>
-    <p>Email: {{user.email}}</p>
-    <p>Role: {{user.role}}</p>
+    <p>ID: <input value="{{user.id}}" [disabled]="true"></p>
+    <p>Email: <input value="{{ user.email }}" [disabled]="!dataBlocked" [(ngModel)]="user.email"></p>
+    <p>Nombre: <input value="{{user.first_name}}" [disabled]="!dataBlocked" [(ngModel)]="user.first_name" ></p>
+    <p>Apellido: <input value="{{user.last_name}}" [disabled]="!dataBlocked" [(ngModel)]="user.last_name"></p>
+    <p>DNI: <input value="{{ user.dni }}" [disabled]="!dataBlocked" [(ngModel)]="user.dni"></p>
+    <p>RUC: <input value="{{ user.ruc }}" [disabled]="!dataBlocked" [(ngModel)]="user.ruc"></p>
+    <p>CELLPHONE: <input value="{{ user.cellphone }}" [disabled]="!dataBlocked" [(ngModel)]="user.cellphone"></p>
+    <p>USERNAME: <input value="{{ user.username }}" [disabled]="!dataBlocked" [(ngModel)]="user.username"></p>
+    <p>FUNDING STATUS: <input value="{{ user.funding_status }}" [disabled]="!dataBlocked" [(ngModel)]="user.funding_status"></p>
+    <p>APPROVAL STATUS: <input value="{{ user.approval_status }}" [disabled]="!dataBlocked" [(ngModel)]="user.approval_status"></p>
+    <p>Role: <input value="{{user.role}}" [disabled]="!dataBlocked" [(ngModel)]="user.role"></p>
   </div>
+  <button class="btn btn-warning btn-block" (click)="edit()">Editarr</button>
+  <button class="btn btn-warning btn-block" (click)="updateUser()">Guardar</button>
   <button class="btn btn-warning btn-block" (click)="editar()">Editar</button>
   <button class="btn btn-success btn-block" (click)="cargar(3)">Cargar JIGSAW</button>
 </div>

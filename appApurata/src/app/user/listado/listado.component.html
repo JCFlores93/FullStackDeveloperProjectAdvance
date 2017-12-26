@@ -1,42 +1,38 @@
-<div class="row">
-
-  <div class="col-md-6">
-    <table class="table">
+<table class="table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">#</th>
-          <th scope="col">Email
-            <img src="/open-iconic/svg/caret-bottom.svg">
-          </th>
-          <th scope="col">First Name</th>
-          <th scope="col">Last Name</th>
-          <th scope="col">DNI</th>
-		  <th scope="col">RUC</th>
-		  <th scope="col">Cellphone</th>
-		  <th scope="col">UserName</th>
-		  <th scope="col">Funding</th>
-		  <th scope="col">Approval</th>
+          <th>#</th>
+          <th>Email</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>DNI</th>
+          <th>RUC</th>
+          <th>Cellphone</th>
+          <th>UserName</th>
+          <th>Funding</th>
+          <th>Approval</th>
+          <th></th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let user of users" (click)="showDetail(user.id)">
+        <tr *ngFor="let user of users">
           <th scope="row">{{ user.id }}</th>
           <td>{{ user.email }}</td>
           <td>{{ user.first_name }}</td>
-		  <td>{{ user.last_name }}</td>
-	      <td>{{ user.dni }}</td>
+          <td>{{ user.last_name }}</td>
+          <td>{{ user.dni }}</td>
           <td>{{ user.ruc }}</td>
-		  <td>{{ user.cellphone }}</td>
-		  <td>{{ user.username }}</td>
-		  <td>{{ user.funding_status }}</td>
-		  <td>{{ user.approval_status }}</td>
+          <td>{{ user.cellphone }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.funding_status }}</td>
+          <td>{{ user.approval_status }}</td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="showDetail(user.id)">Ver detalle</button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Eliminar</button>
+          </td>
         </tr>
       </tbody>
     </table>
-  </div>
- <!--<div class="col-md-6">
- --> <!--<router-outlet></router-outlet>
-  </div>-->
-
-
-</div>

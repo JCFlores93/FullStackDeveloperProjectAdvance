@@ -13,24 +13,16 @@ export class ListadoComponent implements OnInit {
 
   users: User[] 
 
-  constructor(private userServicio:UsersService,
+  constructor(private userServicie:UsersService,
               private ruteador: Router,
               private rutaActiva: ActivatedRoute,
               private dataService: DataService ) { }
 
   ngOnInit() {
-    console.log(this.userServicio.getUsers())
-    //this.users = this.userServicio.getUsers()
-    this.userServicio.getUsersObservable()
-                    .subscribe(
-                      (registro: User[]) => {
-                        console.log("wtf" + registro)
-                        console.log("registro" + JSON.stringify(registro))
-                        this.users = registro
-                        console.log("users" + this.users)
-                      },
-                      (error: any) => console.log(error)
-                    )
+    console.log(this.userServicie.getUsers())
+	//this.users = this.userServicio.getUsers()
+	this.showAllUsers()
+   
   }
 
   showDetail(id: string){
@@ -43,5 +35,32 @@ export class ListadoComponent implements OnInit {
   )
   console.log("ruta Activada" + this.rutaActiva)
   }
+
+  deleteUser(id: string){
+    this.userServicie.deleteUser(id)
+								.subscribe(
+									(registro: User) => {
+										this.showAllUsers()
+									},
+									(error: Error) => {
+										console.log(error.message)
+									}
+								)
+  }
+
+  showAllUsers(){
+	this.userServicie.getUsersObservable()
+	.subscribe(
+	  (registro: User[]) => {
+		console.log("wtf" + registro)
+		console.log("registro" + JSON.stringify(registro))
+		this.users = registro
+		console.log("users" + this.users)
+	  },
+	  (error: any) => console.log(error)
+	)
+  }
+
+
 
 }
