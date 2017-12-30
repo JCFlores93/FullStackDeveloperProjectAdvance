@@ -5,7 +5,7 @@ import { ListadoPreApproveComponent } from './listado-pre-approve/listado-pre-ap
 import { DetallePreApproveComponent } from './detalle-pre-approve/detalle-pre-approve.component';
 
 const routes: Routes = [
-  {path: "", children:[
+  {path: "pre-approve", children:[
     {path:"", component: ListadoPreApproveComponent},
     {path: "detalle", component: DetallePreApproveComponent, canActivate:[AutenticacionGuard]},
   ]}
@@ -13,7 +13,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
-  providers: [AutenticacionGuard]
+  exports: [RouterModule]
 })
 export class PreapproveRoutingModule { }

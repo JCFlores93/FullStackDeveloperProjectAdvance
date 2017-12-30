@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { MessageService } from '../message.service';
+import { SeguridadService } from '../../auth/seguridad.service';
 
 @Component({
   selector: 'app-cabecera',
@@ -9,26 +10,23 @@ import { MessageService } from '../message.service';
 })
 
 
-export class CabeceraComponent implements OnInit,OnDestroy {
+export class CabeceraComponent implements OnInit {
 
   message:boolean
   subscription: Subscription
   fecha: Date = new Date()
+  usuarioLogueado: boolean = false
 
-  constructor(private messageService: MessageService) {
-    this.subscription = this.messageService.getMessage().subscribe(
-      message => {
-        
-        this.message = message;
-        console.log("cabecera esto es :" + message)
-      }
-    )
+  constructor(private block: SeguridadService) {
    }
 
   ngOnInit() {
+      this.usuarioLogueado = this.block.estaAutenticado()
+      this.block.cambioEstado
+			.subscribe(
+			  estado => {
+                this.usuarioLogueado = estado
+			  }
+			)
   }
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe()
-  }
-
 }

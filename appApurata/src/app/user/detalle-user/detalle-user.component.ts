@@ -70,6 +70,14 @@ export class DetalleUserComponent implements OnInit, OnDestroy {
   }
   edit(){
       this.dataBlocked = true
+      console.log("edit")
+      console.log("dataBlocked " + this.dataBlocked)
+
+  }
+  cancelEdit(){
+    this.dataBlocked = false
+    console.log("cancelEdit")
+    console.log("dataBlocked " + this.dataBlocked)
   }
 
   updateUser(id: string){
@@ -82,6 +90,12 @@ export class DetalleUserComponent implements OnInit, OnDestroy {
                 (error: any) => console.log(error)
 
             )
+  }
+  cancelList(){
+      this.dataBlocked = true
+      console.log("cancel")
+      console.log("ruta activa " + this.rutaActiva)
+      this.router.navigate(["users"])      
   }
 
 }

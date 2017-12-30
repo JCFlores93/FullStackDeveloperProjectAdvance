@@ -9,10 +9,7 @@ export class User{
         public cellphone: string,       
         public username: string,       
         public funding_status: string,       
-        public approval_status: string,       
-
-
-
-        public role: string,
+        public approval_status: string, 
+        public role: string
     ){}
 }

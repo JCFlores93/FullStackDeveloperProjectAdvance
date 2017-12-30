@@ -7,36 +7,18 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home
+      <li class="nav-item active" *ngIf="usuarioLogueado">
+        <a class="nav-link" href="#" [routerLink]="['users']">Users
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" *ngIf="!message">{{ message }} Oculto</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" *ngIf="!message">{{ message }} Admin</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" *ngIf="!message">{{ message }} Command</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" *ngIf="!message">{{ message }} Contabilidad</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" *ngIf="!message">{{ message }} Analisis</a>
+      <li class="nav-item" *ngIf="usuarioLogueado">
+        <a class="nav-link" href="#" [routerLink]="['pre-approve']">Pre-Approve</a>
       </li>
     </ul>
     <form class="form-inline">
-      <button class="btn btn-outline-success" type="submit">Inicia Sesión</button>
-      <p class="mr-sm-2" type="text">Contactanos</p>
+      <!--<button class="btn btn-outline-success" *ngIf="!usuarioLogueado" [routerLink]="['']">Inicia Sesión</button>-->
+      <button class="btn btn-outline-success" *ngIf="usuarioLogueado"[routerLink]="['']">Cerrar Sesión</button>
     </form>
   </div>
 </nav>

@@ -19,6 +19,7 @@ import { FormsModule } from "@angular/forms";
         CabeceraComponent,
         AppRoutingModule
     ]
+    
 })
 
 export class NucleoModule {}

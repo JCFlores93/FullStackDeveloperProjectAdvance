@@ -1,5 +1,5 @@
 <table class="table">
-      <thead class="thead-dark">
+      <thead class="thead-inverse">
         <tr>
           <th>#</th>
           <th>Email</th>
@@ -7,10 +7,10 @@
           <th>Last Name</th>
           <th>DNI</th>
           <th>RUC</th>
-          <th>Cellphone</th>
+          <!--<th>Cellphone</th>-->
           <th>UserName</th>
-          <th>Funding</th>
-          <th>Approval</th>
+          <!--<th>Funding</th>
+          <th>Approval</th>-->
           <th></th>
           <th></th>
         </tr>
@@ -23,16 +23,17 @@
           <td>{{ user.last_name }}</td>
           <td>{{ user.dni }}</td>
           <td>{{ user.ruc }}</td>
-          <td>{{ user.cellphone }}</td>
+          <!--<td>{{ user.cellphone }}</td>-->
           <td>{{ user.username }}</td>
-          <td>{{ user.funding_status }}</td>
-          <td>{{ user.approval_status }}</td>
+          <!--<td>{{ user.funding_status }}</td>
+          <td>{{ user.approval_status }}</td>-->
           <td>
             <button type="button" class="btn btn-info" (click)="showDetail(user.id)">Ver detalle</button>
           </td>
           <td>
             <button type="button" class="btn btn-danger" (click)="deleteUser(user.id)">Eliminar</button>
           </td>
+          <td> </td>
         </tr>
       </tbody>
     </table>

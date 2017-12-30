@@ -14,8 +14,7 @@ export class AutorizacionGuard implements CanActivate {
 	canActivate(
 		next: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-		const usuario: IUsuario[] =
-			this.seguridadService.usuarioEncontrado
+        const usuario: IUsuario[] = this.seguridadService.usuarioEncontrado
 		if (usuario && usuario[0].rol === "ADMIN") {
 			return true
 		}

@@ -14,8 +14,8 @@
     <p>APPROVAL STATUS: <input value="{{ user.approval_status }}" [disabled]="!dataBlocked" [(ngModel)]="user.approval_status"></p>
     <p>Role: <input value="{{user.role}}" [disabled]="!dataBlocked" [(ngModel)]="user.role"></p>
   </div>
-  <button class="btn btn-warning btn-block" (click)="edit()">Editarr</button>
-  <button class="btn btn-warning btn-block" (click)="updateUser()">Guardar</button>
-  <button class="btn btn-warning btn-block" (click)="editar()">Editar</button>
-  <button class="btn btn-success btn-block" (click)="cargar(3)">Cargar JIGSAW</button>
+  <button class="btn btn-warning btn-block" *ngIf="!dataBlocked" (click)="edit()">Editarr</button>
+  <button class="btn btn-warning btn-block" *ngIf="dataBlocked" (click)="updateUser()">Guardar</button>
+  <button class="btn btn-warning btn-block" *ngIf="dataBlocked" (click)="cancelEdit()">Cancel</button>
+  <button class="btn btn-warning btn-block" *ngIf="!dataBlocked" (click)="cancelList()">Cancelar</button> 
 </div>

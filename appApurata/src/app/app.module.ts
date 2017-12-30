@@ -15,12 +15,10 @@ import { ListadoPreApproveComponent } from './preapprove/listado-pre-approve/lis
 import { DetallePreApproveComponent } from './preapprove/detalle-pre-approve/detalle-pre-approve.component'
 import { DataService } from './user/data.service';
 //import { RequestDataService } from './user/request-data.service';
-//import { AppInterceptor } from './app.interceptor';
+import { AppInterceptor } from './app.interceptor';
 @NgModule({
   declarations: [
-    AppComponent,
-    ListadoPreApproveComponent,
-    DetallePreApproveComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +26,7 @@ import { DataService } from './user/data.service';
     NucleoModule
   ],
   providers: [
-    //{ provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true},
     SeguridadService, MessageService, UsersService,DataService
   ],
   bootstrap: [AppComponent]

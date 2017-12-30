@@ -15,27 +15,32 @@ const rutas : Routes = [
   {
     path: "", component: HomeComponent, pathMatch:"full"
   },
-  {
+ /* {
     path: "users",
     canActivate:[AutenticacionGuard],canActivateChild :[AutenticacionGuard], children:[
       {path: "", component: ListadoComponent},
       {path: "detalle/:id", component: DetalleUserComponent},
       {path: "editar/:id", component: EditarUserComponent, canActivate:[AutorizacionGuard], canDeactivate:[GuardadoGuard]}
     ]
+  }*/
+  {
+      path:"", loadChildren: "./user/user.module#UserModule",
+      canLoad: [AutenticacionGuard]
+  },
+  {     
+      path:"", loadChildren: "./preapprove/preapprove.module#PreapproveModule",
+      canLoad: [AutenticacionGuard]
   }
   
 ]
 
 @NgModule({
   declarations:[
-    ListadoComponent,
-    DetalleUserComponent,
-    EditarUserComponent
   ],
   imports: [
     FormsModule,
     CommonModule,
-    RouterModule.forRoot(rutas, { preloadingStrategy: PreloadAllModules})
+    RouterModule.forRoot(rutas, { preloadingStrategy: PreloadAllModules}),
   ],
   exports: [
     RouterModule

@@ -36,7 +36,7 @@ export class UsersService {
         })
     }
 	saveUser(user: User) {
-		console.log(user)
+
 		this.users.forEach(item => {
 			if (item.id === user.id) {
 				item.first_name = user.first_name
@@ -45,14 +45,11 @@ export class UsersService {
 				item.role = user.role
 			}
 		})
-		console.log(this.users)
+
 	}
 	usersDetail(id: string): User{
-		console.log("users.service" + id)
         let user: User
-        console.log("usersDetail " + this.users)
 		this.users.forEach(item => {
-            console.log("tipo de usuario " + item.id + "  ")
 		if(item.id == id ) user = new User(item.id, item.first_name, item.last_name, item.email,"","","","","","", item.role)	
 		})
 		return user

@@ -1,36 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import { SeguridadService } from '../../auth/seguridad.service'
-import { MessageService } from '../message.service'
+import { SeguridadService } from '../../auth/seguridad.service';
+import { MessageService } from '../message.service';
+
+class IUsuario {
+  id:number;
+  nombre:string;
+  username:string;
+  password:string;
+  rol:string;
+  accessToken:string;
+  refreshToken:string
+}
+
 @Component({
 	selector: 'app-home',
 	templateUrl: './home.component.html',
 	styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
 
 	username: string
 	password: string
 	usuarioLogueado: boolean
+	user = new IUsuario()
 
-	constructor(private seguridadService: SeguridadService,private messageService: MessageService) { }
+	
+	constructor(private seguridadService: SeguridadService,
+				private messageService: MessageService,
+				) { }
 
 	ngOnInit() {
-		this.usuarioLogueado = 
-		this.seguridadService.estaAutenticado()
-
+		this.usuarioLogueado = this.seguridadService.estaAutenticado()
 		this.seguridadService.cambioEstado
-		.subscribe(
-		  estado => {
-			this.usuarioLogueado = estado
-		  }
-		)
-
+			.subscribe(
+			  estado => {
+				this.usuarioLogueado = estado
+			  }
+			)
 		this.sendMessage()
 	}
 
 	login() {
-		this.seguridadService.login(this.username, this.password)
-	} 
+		this.user.username = this.username
+        this.user.password = this.password
+		this.seguridadService.login(this.user)
+    } 
+    
 	logout() {
 		this.seguridadService.logout()
 	}
